@@ -6,9 +6,13 @@ My university gave us a special Arduino shield for Arduino Uno, which is called 
 
 ![Image of the board](https://github.com/LucaPredieri/HeartRate30102/blob/main/UniGeExpboard.JPG)
 
-The word "ossimetro" means oximeter which is the sensor MAX30102. The pin that we will study and will use for all the project is the number 10.
+The word "ossimetro" means oximeter which is the sensor MAX30102. As every project that involves registers, we will use the library Wire of Arduino, that works with A4 and A5 pins.
 Here's shown the board, the sensor is on the bottom left:
 
 ![Image of the board](https://github.com/LucaPredieri/HeartRate30102/blob/main/UnigExpboard2.0.jpeg)
 
-So, I won't show you any kind of circuit. It'll be just code and some datas I got from the project.
+So, I won't show you any kind of circuit. It'll be just code and some datas I got from the project. I will show you how to filter datas, store them and process them.
+
+# Reading the registers of the MAX30102 with Wire library. 
+If we read the datasheet that the company published on the web thorught this link:
+> https://datasheets.maximintegrated.com/en/ds/MAX30102.pdf
