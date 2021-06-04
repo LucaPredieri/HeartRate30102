@@ -7,3 +7,5 @@ My university gave us a special Arduino shield for Arduino Uno, which is called 
 ![Image of the board](https://github.com/LucaPredieri/HeartRate30102/blob/main/UniGeExpboard.JPG)
 
 The word "ossimetro" means oximeter which is the sensor MAX30102. The pin that we will study and will use for all the project is the number 10.
+Here's shown the board, the sensor is on the bottom left:
+![Image of the board](https://github.com/LucaPredieri/HeartRate30102/blob/main/UnigExpboard2.0.jpeg)
