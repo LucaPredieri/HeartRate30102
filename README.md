@@ -15,4 +15,27 @@ The sensor is the one on the bottom left. So, I won't show you any kind of circu
 
 # Reading the registers of the MAX30102 with Wire library. 
 If we read the datasheet that the company published on the web thorught this [link](https://datasheets.maximintegrated.com/en/ds/MAX30102.pdf), we can see there are some specific istructions to communicate with the sensor, using the Wire library. The Wire library helps us because the sensor uses a I2C protocol. The I2C protocol is usually read with the Wire library because with the A4 and A5 pins both the SDA (data line) and SCL (clock line) are way easier to manage.
-> 
+At page 16 of the [datasheet](https://datasheets.maximintegrated.com/en/ds/MAX30102.pdf) we can see how to communicate with the sensor, I implemented two easy functions to make reading and writing faster:
+```
+byte Read(byte reg, byte dati){
+  Wire.beginTransmission(MAXIM);
+  Wire.write(reg);
+  Wire.endTransmission(false);
+  Wire.requestFrom(MAXIM,dati);
+  if(Wire.available()){
+    return Wire.read();
+  }
+  else{ 
+    return 0;
+  }
+  Wire.endTransmission();
+}
+
+void Write(byte reg, byte N) {
+  Wire.beginTransmission(MAXIM);
+  Wire.write(reg);
+  Wire.write(N);
+  Wire.endTransmission(); 
+}
+
+```
