@@ -39,3 +39,7 @@ void Write(byte reg, byte N) {
 }
 
 ```
+Once we have them we can configure the sensor to get the better signal we can from our body. 
+
+# Sensor and output configuration.
+Inside the setup() function we have five lines they use the function Write() to configure the data output and the sensor. I found that the best configurations (I can bet you can do it better!) are the following.
