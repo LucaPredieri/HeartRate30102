@@ -14,5 +14,5 @@ Here's shown the board, the sensor is on the bottom left:
 The sensor is the one on the bottom left. So, I won't show you any kind of circuit. It'll be just code and some datas I got from the project. I will show you how to filter datas, store them and process them.
 
 # Reading the registers of the MAX30102 with Wire library. 
-If we read the datasheet that the company published on the web thorught this [link](https://datasheets.maximintegrated.com/en/ds/MAX30102.pdf)
+If we read the datasheet that the company published on the web thorught this [link](https://datasheets.maximintegrated.com/en/ds/MAX30102.pdf), we can see there are some specific istructions to communicate with the sensor, using the Wire library. The Wire library helps us because the sensor uses a I2C protocol. The I2C protocol is usually read with the Wire library because with the A4 and A5 pins both the SDA (data line) and SCL (clock line) are way easier to manage.
 > 
