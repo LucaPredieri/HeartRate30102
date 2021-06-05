@@ -42,4 +42,6 @@ void Write(byte reg, byte N) {
 Once we have them we can configure the sensor to get the better signal we can from our body. 
 
 # Sensor and output configuration.
-Inside the setup() function we have five lines they use the function Write() to configure the data output and the sensor. I found that the best configurations (I can bet you can do it better!) are the following.
+If we look the datasheet we can read there are some registers that have bits dedicated to the configuration of the device and the data output (page 10 of the [datasheet](https://datasheets.maximintegrated.com/en/ds/MAX30102.pdf)). Inside the setup() function we have five lines they use the function Write() to configure the data output and the sensor. I found that the best configurations (I  bet you can do it better!) are the following:
+- **0x0A SpO2 configuration**: 01101111
+  - Max range of the A/D converter, max samples frequency with 18 bits of resolution (400 Sa/s), max pulse width in order to get max number of bits.
