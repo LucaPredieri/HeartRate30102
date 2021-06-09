@@ -47,3 +47,12 @@ If we look the datasheet we can read there are some registers that have bits ded
   - Max range of the A/D converter, max samples frequency with 18 bits of resolution (400 Sa/s), max pulse width in order to get max number of bits.
 - **0x08 FIFO Configuration**: 11110000
   - Max possible average of samples, the sensor takes every 32 samples and make the average of them, then it sends it to the output. The fourth bit it's linked with the rollover of the FIFO, which means that the sensor doesn't wait for the user to read it but it just refresh it every time he can.
+
+The last changes I decided to make in the registers was to toggle the 2nd most significant bit in the **0x02 Interrupt Enable 1**  in order to read in Fifo_output function real values (sometimes the sensor was giving random numbers like 4.43..e+9 so i thought it was pretty weird).
+
+# What should I expect from my plotter?
+These is an example of what you can get from the data registers:
+
+![Image of the Signal](https://github.com/LucaPredieri/HeartRate30102/blob/main/Signal_example1.JPG)
+
+what we can see is that we have an oscillating signal where the impulse is the process that comes from diastole and systole movements
