@@ -111,3 +111,5 @@ if (n==1) DeltaTime=millis();
   
   ```
   
+  # Conclusion
+  The MAX30102 is a great sensor, indeed it costs around 10 euros ([Amazon.com](https://www.amazon.it/ICQUANZX-Sensore-frequenza-cardiaca-MAX30102/dp/B07VJ7CPL9/ref=asc_df_B07VJ7CPL9/?tag=googshopit-21&linkCode=df0&hvadid=511945398845&hvpos=&hvnetw=g&hvrand=13920737596172437650&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1008337&hvtargid=pla-1285631196418&psc=1)). Tho it's not so easy to develop a firmware which can use perfectly the sensor. My task at school was to use the SpO2 mode of the sensor even tho there's a dedicated mode (heart mode) which can be maybe easier than the SpO2 one. Anyway, I'm satisfied of the work and you can use the sensor with this firmware to measure the heart rate of a person at rest. 
