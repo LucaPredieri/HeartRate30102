@@ -50,9 +50,64 @@ If we look the datasheet we can read there are some registers that have bits ded
 
 The last changes I decided to make in the registers was to toggle the 2nd most significant bit in the **0x02 Interrupt Enable 1**  in order to read in Fifo_output function real values (sometimes the sensor was giving random numbers like 4.43..e+9 so i thought it was pretty weird).
 
-# What should I expect from my plotter?
+# What should I expect from the plotter?
 These is an example of what you can get from the data registers:
 
 ![Image of the Signal](https://github.com/LucaPredieri/HeartRate30102/blob/main/Signal_example1.JPG)
 
-what we can see is that we have an oscillating signal where the impulse is the process that comes from diastole and systole movements
+what we can see is that we have an oscillating signal where the impulse is the process that comes from diastole and systole movements. To study the zero crossing we can use a moving average, with much samples as we need, in my case I chose 10, but you can decide how many as you like. 
+
+```
+
+  ARRAY_RED[i]=DATA_R;
+  if(i < 10) i++;
+  else i=0;
+  unsigned long SUM_R=0;
+  for(int j=0; j<10; j++) {
+    SUM_R += ARRAY_RED[j];
+  } 
+  SUM_R=SUM_R/10;
+  
+```
+
+If you plot both the variables, the main signal and the moving average here's what you should get: 
+
+![Image of the Signal](https://github.com/LucaPredieri/HeartRate30102/blob/main/signal%202.JPG)
+
+if you make the difference between the two variables here's what we get: 
+
+![Image of the Signal](https://github.com/LucaPredieri/HeartRate30102/blob/main/signal%203.JPG)
+
+then we can study the zero crossing as the period with the algorithm we prefer, here's what I used (doesn't work well with high BPMs):
+
+```
+
+if (n==1) DeltaTime=millis();
+  if(peaks>0){
+    if(count && ((millis()-T)>333)){
+      T=millis();
+      n++;
+      count=false;
+    }
+  }
+  else {
+    count=true;
+  }
+  
+  if(n==15){
+    unsigned long period=millis()-DeltaTime;
+    SettingTime=millis()-SettingTime;
+    float frequency=((float)(n-1)/(float)period)*1000*60;
+    if (frequency<30){
+      Serial.println("PROBLEMS WITH THE POSITION, TRY TO PLACE IT BETTER.");
+    }
+    else{
+      Serial.print("BPM: ");
+      Serial.println(round(frequency));
+    }
+    n=1;
+    // Serial.println(SettingTime);
+  }
+  
+  ```
+  
